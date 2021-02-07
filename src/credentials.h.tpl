@@ -1,0 +1,8 @@
+#define DEVICE_NAME        ""
+#define WIFI_SSID          ""
+#define WIFI_PASSWORD      ""
+#define AIO_NAME           ""
+#define AIO_KEY            ""
+#define AIO_MOISTURE_FEED  ""
+#define AIO_HUMIDITY_FEED  ""
+#define AIO_TEMP_FEED      ""
