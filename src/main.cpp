@@ -8,7 +8,6 @@
 #include <ArduinoJson.h>
 #include <HTTPClient.h>
 
-#define LED_BUILTIN   13
 #define PIN_LED_BLUE  16
 #define PIN_DHT       22
 #define PIN_SOIL      32
@@ -127,25 +126,12 @@ void post_data() {
 
 
 void setup(void) {
-  // put this right at the start of setup to minimise wasted power
-  ++bootCount;
-
   sleepus = TIME_TO_SLEEP * uS_TO_S_FACTOR;
   esp_sleep_enable_timer_wakeup(sleepus);
-
-  if (bootCount != 6) {
-    esp_deep_sleep_start();
-  }
-
-  bootCount = 0; // this will only run on the 3rd boot.
   
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, 0);
+  pinMode(PIN_LED_BLUE, OUTPUT);
+  digitalWrite(PIN_LED_BLUE, 0);
   Serial.begin(115200);
-
-  Serial.println("");
-  Serial.print("boot count: ");
-  Serial.println(bootCount);
 
   dht.begin();
 
@@ -175,5 +161,6 @@ void loop(void) {
 
   Serial.flush(); 
   delay(2000);
+  
   esp_deep_sleep_start();
 }
